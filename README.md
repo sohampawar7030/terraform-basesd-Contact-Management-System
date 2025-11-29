@@ -455,24 +455,6 @@ resource "aws_db_instance" "db" {
 }
 ```
 
-#### 4. Add Application Load Balancer + SSL
-
-```hcl
-resource "aws_lb" "app" {
-  name               = "contact-app-lb"
-  load_balancer_type = "application"
-  subnets            = [aws_subnet.public_a.id, aws_subnet.public_b.id]
-}
-
-resource "aws_lb_listener" "https" {
-  load_balancer_arn = aws_lb.app.arn
-  port              = "443"
-  protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = "your-certificate-arn"
-}
-```
-
 ---
 
 ## 🔧 Maintenance
